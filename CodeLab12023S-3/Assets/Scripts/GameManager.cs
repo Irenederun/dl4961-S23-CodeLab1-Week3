@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
             {
                 Record = score;
                 beat_high_score = true;
+                //PlayerPrefs.SetString("playerName", "YOU");
             }
         }
     }
