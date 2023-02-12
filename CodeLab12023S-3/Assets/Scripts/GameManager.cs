@@ -11,10 +11,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    private int score = 0;
-    private int level = 0;
-    private int targetScore = 4;
-    private int record = 2;
+    private int score = 0;//initial score
+    private int level = 0;//level No.
+    private int targetScore = 4;//target
+    private int record = 2;//existing record
     public bool beat_high_score = false;
 
     public GameObject showOnGO;
@@ -22,24 +22,26 @@ public class GameManager : MonoBehaviour
     public GameObject beginText;
     public TextMeshProUGUI textMeshPro;
     public TextMeshProUGUI gameOverText;
+    public GameObject inputField;
+    public GameObject submitButton;
 
-    private string recordKeeperName = "<???>";
+    private string recordKeeperName = "<???>";//initialize name string
     
     public int Score
     {
         get
         {
-            return score;
+            return score;//allow other places to access score through Score
         }
         set
         {
-            score = value;
+            score = value;//allow score to be set to diff. values
 
-            if (score > Record)
+            if (score > Record)//if record is broken
             {
-                Record = score;
-                beat_high_score = true;
-                //PlayerPrefs.SetString("playerName", "YOU");
+                Record = score;//record sets to new record
+                beat_high_score = true;//boolean
+                PlayerPrefs.SetString("playerName", "YOU");//change default name display
             }
         }
     }
@@ -48,15 +50,15 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            record = PlayerPrefs.GetInt("newRecord", 2);
-            recordKeeperName = PlayerPrefs.GetString("playerName", "<???>");
-            return record;
+            record = PlayerPrefs.GetInt("newRecord", 2);//set record to stored player pref data
+            recordKeeperName = PlayerPrefs.GetString("playerName", "<???>");//set name to stored player pref data
+            return record;//connect Record with record
         }
         set
         {
-            record = value;
+            record = value;//allow changes to record
             //Debug.Log("New Record!");
-            PlayerPrefs.SetInt("newRecord", record);
+            PlayerPrefs.SetInt("newRecord", record);//store new record data into player Pref 
         }
     }
     
@@ -84,16 +86,30 @@ public class GameManager : MonoBehaviour
         textMeshPro.text =
             ("Level: " + (1 + level) + "\n" +
              "Score: " + Score + "\n" +
-             "Record: " + Record + " By " + recordKeeperName);
+             "Record: " + Record + " By " + recordKeeperName);//set displayed info text
 
-        if (GameOver.gameOver == true)
+        if (GameOver.gameOver == true)//if game over. boolean from Game over Script bc public static.
         {
-            Destroy(music);
-            Destroy(beginText);
-            showOnGO.SetActive(true);
+            Destroy(music);//stop music
+            Destroy(beginText);//remove game guide
+            showOnGO.SetActive(true);//display game over page
+
+            if (beat_high_score == false)//if high score is not broken
+            {
+                gameOverText.text = "Too Bad! You didn't Beat the Record." + "\n" +
+                                    "Try again! Maybe Use Space to Reset?";
+                //set text to a diff. version
+                
+                inputField.SetActive(false);//does not allow for name input
+                submitButton.SetActive(false);//does not allow for text submission
+            }
+            else
+            {
+                return;
+            }
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))//press space to reset name and record
         {
             PlayerPrefs.DeleteKey("newRecord");
             PlayerPrefs.DeleteKey("playerName");

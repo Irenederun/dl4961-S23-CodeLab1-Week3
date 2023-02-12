@@ -92,10 +92,6 @@ public class Collision : MonoBehaviour
                 //refine
             }
 
-            //Line.Instance.points.Add(lastTrain.GetComponent<Transform>());
-            //Line.Instance.points.Add(trainCar.GetComponent<Transform>());
-            //these two lines are not working and I don't know why
-
             lastTrain = trainCar;//reset last Train to this newly instantiated car
             GameManager.Instance.Score++;//add score
         }

@@ -15,21 +15,20 @@ public class ButtonPres : MonoBehaviour
     public GameObject inputField;
     public GameObject submitButton;
     public TextMeshProUGUI recordName;
-
     public TextMeshProUGUI gameOverText;
 
-    public void SubmitName()
+    public void SubmitName()//on submission button clicked 
     {
-        playerName = recordName.text;
-        string[] nameParts = playerName.Split(' ');
-        nickName = nameParts[0];
-        gameOverText.text = replacementText.Replace("<name>", nickName);
+        playerName = recordName.text;//get the input text 
+        string[] nameParts = playerName.Split(' ');//split between parts
+        nickName = nameParts[0];//take only the first part
+        gameOverText.text = replacementText.Replace("<name>", nickName);//change display text
         
-        Destroy(inputField);
-        Destroy(submitButton);
+        Destroy(inputField);//remove input field
+        Destroy(submitButton);//remove submission button
 
-        PlayerPrefs.SetString("playerName", nickName);
+        PlayerPrefs.SetString("playerName", nickName);//store input name as the new player name in player pref 
         
-        Debug.Log("Name: " + nickName);
+        Debug.Log("Name: " + nickName);//debug
     }
 }

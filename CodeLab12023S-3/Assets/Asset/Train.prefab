@@ -291,8 +291,9 @@ GameObject:
   - component: {fileID: 3950395033512356929}
   - component: {fileID: 4661942839322451705}
   - component: {fileID: 5183998192555592036}
-  m_Layer: 0
-  m_Name: Direction
+  - component: {fileID: 825942}
+  m_Layer: 6
+  m_Name: TrainHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -378,7 +379,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.038427174, y: 0.65129375}
+  m_Offset: {x: -0.019230843, y: 0.6112855}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.28866667}
@@ -389,7 +390,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.1528153, y: 3.9597335}
+  m_Size: {x: 1.4737334, y: 3.0795512}
   m_EdgeRadius: 0
 --- !u!50 &5183998192555592036
 Rigidbody2D:
@@ -412,3 +413,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!255 &825942
+FixedJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3950395033512356935}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 3950395032802263791}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 3.9199996, y: 0.0000003054884}
+  m_DampingRatio: 0
+  m_Frequency: 0
